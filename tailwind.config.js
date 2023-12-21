@@ -10,16 +10,19 @@ export default {
       current: 'currentColor',
       'white': '#ffffff',
       'purple': '#3f3cbb',
-      'midnight': '#121063',
+      'midnight': '#232f3e',
       'metal': '#565584',
       'tahiti': '#3ab7bf',
       'silver': '#334155',
       'bubble-gum': '#ff77e9',
       'bermuda': '#fbbf24',
       'slate': '#0f172a',
+      'amber':'#b45309'
     },
     extend: {},
   },
-  plugins: [require("daisyui")],
+  plugins: [
+    require("daisyui"),
+  ],
 }
 

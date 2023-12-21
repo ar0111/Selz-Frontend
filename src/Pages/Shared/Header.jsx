@@ -6,53 +6,85 @@ import compare from '../../assets/images/compare.svg';
 import favorite from '../../assets/images/wishlist.svg';
 import account from '../../assets/images/user.svg';
 import cart from '../../assets/images/cart.svg';
+import menu from '../../assets/images/menu.svg';
 
 const Header = () => {
     return (
-        <div className='bg-slate'>
-            <div className="container mx-auto py-2">
-                <div className='flex justify-between text-white text-sm'>
-                    <p>Free Shipping Over $100 & Free Returns</p>
-                    <p>Hotline: <a href="+18143519592">+18143519592</a></p>
-                </div>
-            </div>
-            <div className='border-b-2 border-silver'></div>
-            <div className='container mx-auto py-3'>
-                <div className='flex justify-between'>
-                    <div className='flex justify-between gap-10 items-center'>
-                        <div><img className='w-40' src={logo} alt="logo" /></div>
-                        <div className='relative'>
-                            <input type="text" placeholder="Search Product Here..." className="input input-bordered input-sm w-full max-w-xs py-5 pe-32" />
-                            <span className='absolute top-0 end-0 bg-bermuda p-[13px] rounded-r-lg'><BsSearch></BsSearch></span>
-                        </div>
+        <>
+            <div className='bg-slate'>
+                <div className="container mx-auto py-2">
+                    <div className='flex justify-between text-white text-sm'>
+                        <p>Free Shipping Over $100 & Free Returns</p>
+                        <p>Hotline: <a href="+18143519592">+18143519592</a></p>
                     </div>
-                    <div className='grid grid-cols-4 gap-4'>
-                        <div className='flex justify-start gap-2'>
-                            <img src={compare} alt="" />
-                            <p className='text-white'>Compare <br/>Product</p>
-                        </div>
-                        <div className='flex justify-start gap-2'>
-                            <img className='w-10' src={favorite} alt="" />
-                            <p className='text-white'>Favourite <br/>Wishlist</p>
-                        </div>
-                        <div className='flex justify-start gap-2'>
-                            <img src={account} alt="" />
-                            <p className='text-white'>Login <br/>My Account</p>
-                        </div>
-                        <div className='flex justify-start gap-4'>
-                            <img src={cart} alt="" />
-                            <div className='flex items-center'>
-                                <span className='text-white'>0</span>
-                                <p className='text-white'>$ 500</p>
+                </div>
+
+                <div className='border-b-2 border-silver'></div>
+
+                <div className='container mx-auto py-3'>
+                    <div className='flex justify-between'>
+                        <div className='flex justify-between gap-10 items-center'>
+                            <div><img className='w-40' src={logo} alt="logo" /></div>
+                            <div className='relative'>
+                                <input type="text" placeholder="Search Product Here..." className="input input-bordered input-sm w-full max-w-xs py-5 pe-32" />
+                                <span className='absolute top-0 end-0 bg-bermuda p-[13px] rounded-r-lg'><BsSearch></BsSearch></span>
                             </div>
                         </div>
-                        {/* <Link></Link>
-                        <Link></Link>
-                        <Link></Link> */}
+                        <div className='grid grid-cols-4 gap-4'>
+                            <div className='flex justify-start gap-2'>
+                                <img src={compare} alt="" />
+                                <p className='text-white'>Compare <br/>Product</p>
+                            </div>
+                            <div className='flex justify-start gap-2'>
+                                <img className='w-10' src={favorite} alt="" />
+                                <p className='text-white'>Favourite <br/>Wishlist</p>
+                            </div>
+                            <div className='flex justify-start gap-2'>
+                                <img src={account} alt="" />
+                                <p className='text-white'>Login <br/>My Account</p>
+                            </div>
+                            <div className='flex justify-start gap-4'>
+                                <img src={cart} alt="" />
+                                <div className='flex my-auto flex-col'>
+                                    <span className='bg-white px-4 rounded-lg text-sm'>0</span>
+                                    <p className='text-white'>$0.00</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+
+            <div className='bg-midnight py-4'>
+                <div className='container mx-auto'>
+                    <div className='flex justify-start gap-10'>
+                        <div className='flex gap-4'>
+                            <img src={menu} alt="" />
+                            <div className="navbar-center hidden lg:flex text-white items-center">
+                                <ul className="menu menu-horizontal p-0 text-base uppercase font-medium">
+                                    <li >
+                                        <details className='transition duration-700 ease-in-out'>
+                                            <summary className='p-0 gap-16'>shop categories</summary>
+                                            <ul className="p-2 bg-slate rounded-b-lg rounded-t-none">
+                                                <li><a>Submenu 1</a></li>
+                                                <li><a>Submenu 2</a></li>
+                                            </ul>
+                                        </details>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div className='flex text-white justify-start gap-6 text-sm font-medium	'>
+                            <div>HOME</div>
+                            <div>OUR STORE</div>
+                            <div>BLOGS</div>
+                            <div>CONTACT</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </>
+        
     );
 };
 
