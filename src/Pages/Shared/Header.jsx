@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import logo from '../../assets/images/selz-1.png';
 import {BsSearch} from 'react-icons/bs';
 import { Link } from 'react-router-dom';
@@ -7,8 +7,17 @@ import favorite from '../../assets/images/wishlist.svg';
 import account from '../../assets/images/user.svg';
 import cart from '../../assets/images/cart.svg';
 import menu from '../../assets/images/menu.svg';
+import { AuthContext } from '../../Context/AuthProvider';
 
 const Header = () => {
+
+    const {user, logOut} = useContext(AuthContext);
+    const handleSignOut = ()=>{
+        logOut()
+        .then(()=>{})
+        .catch(err=>console.log(err))
+    }
+
     return (
         <>
             <div className='bg-slate'>
@@ -48,13 +57,18 @@ const Header = () => {
                                         <li><Link to='/signup'>Register</Link></li>
                                     </ul>
                                 </details> */}
-                                <div className="dropdown">
-                                    <div tabIndex={0} role="button" className="text-white">Login <br/>My Account</div>
-                                    <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
-                                        <li><Link to='/login'>Login</Link></li>
-                                        <li><Link to='/signup'>Register</Link></li>
-                                    </ul>
-                                </div>          
+                                {
+                                    user?.uid? <button className='text-white text-sm' onClick={handleSignOut}>Sign Out</button> : <>
+                                        <div className="dropdown">
+                                            <div tabIndex={0} role="button" className="text-white">Login <br/>My Account</div>
+                                            <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+                                                <li><Link to='/login'>Login</Link></li>
+                                                <li><Link to='/signup'>Register</Link></li>
+                                            </ul>
+                                        </div>  
+                                    </>
+                                }
+                                        
                             </div>
                             <div className='flex justify-start gap-4'>
                                 <img src={cart} alt="" />
@@ -78,7 +92,7 @@ const Header = () => {
                                     <li >
                                         <details className='transition duration-700 ease-in-out'>
                                             <summary className='p-0 gap-16'>shop categories</summary>
-                                            <ul className="p-2 bg-slate rounded-b-lg rounded-t-none">
+                                            <ul className="p-2 bg-slate rounded-b-lg rounded-t-none z-[1] w-full">
                                                 <li><a>Submenu 1</a></li>
                                                 <li><a>Submenu 2</a></li>
                                             </ul>
@@ -88,10 +102,13 @@ const Header = () => {
                             </div>
                         </div>
                         <div className='flex text-white justify-start gap-6 text-sm font-medium	'>
-                            <div>HOME</div>
-                            <div>OUR STORE</div>
-                            <div>BLOGS</div>
-                            <div>CONTACT</div>
+                            <div><Link to='/'>HOME</Link></div>
+                            <div><Link>OUR STORE</Link></div>
+                            <div><Link to='/blogs'>BLOGS</Link></div>
+                            <div><Link to='/contact'>CONTACT</Link></div>
+                            {
+                                user?.uid? <div><Link to='/dashboard'>DASHBOARD</Link></div> : ''
+                            }
                         </div>
                     </div>
                 </div>

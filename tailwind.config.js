@@ -12,7 +12,7 @@ export default {
       'purple': '#3f3cbb',
       'midnight': '#232f3e',
       'metal': '#565584',
-      'tahiti': '#3ab7bf',
+      'red': '#dc2626',
       'silver': '#334155',
       'warning': '#fbbf24',
       'black': '#000000',
