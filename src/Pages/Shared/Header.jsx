@@ -24,7 +24,7 @@ const Header = () => {
                 <div className='container mx-auto py-3'>
                     <div className='flex justify-between'>
                         <div className='flex justify-between gap-10 items-center'>
-                            <div><img className='w-40' src={logo} alt="logo" /></div>
+                            <div><Link to='/'><img className='w-40' src={logo} alt="logo" /></Link></div>
                             <div className='relative'>
                                 <input type="text" placeholder="Search Product Here..." className="input input-bordered input-sm w-full max-w-xs py-5 pe-32" />
                                 <span className='absolute top-0 end-0 bg-bermuda p-[13px] rounded-r-lg'><BsSearch></BsSearch></span>
@@ -41,7 +41,20 @@ const Header = () => {
                             </div>
                             <div className='flex justify-start gap-2'>
                                 <img src={account} alt="" />
-                                <p className='text-white'>Login <br/>My Account</p>
+                                {/* <details className="dropdown">
+                                    <summary className="">Login <br/>My Account</summary>
+                                    <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
+                                        <li><Link to='/login'>Login</Link></li>
+                                        <li><Link to='/signup'>Register</Link></li>
+                                    </ul>
+                                </details> */}
+                                <div className="dropdown">
+                                    <div tabIndex={0} role="button" className="text-white">Login <br/>My Account</div>
+                                    <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+                                        <li><Link to='/login'>Login</Link></li>
+                                        <li><Link to='/signup'>Register</Link></li>
+                                    </ul>
+                                </div>          
                             </div>
                             <div className='flex justify-start gap-4'>
                                 <img src={cart} alt="" />
