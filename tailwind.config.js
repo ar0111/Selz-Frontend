@@ -9,7 +9,7 @@ export default {
       transparent: 'transparent',
       current: 'currentColor',
       'white': 'rgb(255 255 255)',
-      'purple': '#3f3cbb',
+      'gray': '#e5e7eb',
       'midnight': '#232f3e',
       'metal': '#565584',
       'red': '#dc2626',

@@ -1,46 +1,20 @@
 import React from 'react';
 
-const CategoryCard = () => {
+const CategoryCard = ({category}) => {
+    // console.log(category);
+    const {name} = category
+
     return (
-        <div className='pt-6'>
-            <div className='grid grid-cols-1 md:grid-cols-3 gap-x-4 gap-y-4'>
-                <div className="card w-auto bg-base-100">
-                    <div className=''>
-                        <div className=''>
-                            <h4 className='text-amber font-semibold'>BEST SALE</h4>
-                            <h1 className='py-3 text-2xl font-semibold'>Laptops Max</h1>
-                            <p>From $999.00 or</p>
-                            <p>$41.62/mo.</p>
-                        </div>
-                    </div>
-                    
+        <div className="card w-auto bg-base-100 shadow-2xl">
+            <div className='p-12'>
+                <div className=''>
+                    <h4 className='text-2xl mb-6 font-semibold'>{name}</h4>
                 </div>
-
-                <div className="card w-auto bg-base-100">
-                    <div className=''>
-                        <div className=''>
-                            <h4 className='text-amber font-semibold'>BEST SALE</h4>
-                            <h1 className='py-3 text-2xl font-semibold'>Laptops Max</h1>
-                            <p>From $999.00 or</p>
-                            <p>$41.62/mo.</p>
-                        </div>
-                    </div>
-                    
+                <div>
+                    <img className='w-auto rounded-lg' src={`data:image/png;base64,${category.image}`} alt="" />
                 </div>
-
-                <div className="card w-auto bg-base-100">
-                    <div className=''>
-                        <div className=''>
-                            <h4 className='text-amber font-semibold'>BEST SALE</h4>
-                            <h1 className='py-3 text-2xl font-semibold'>Laptops Max</h1>
-                            <p>From $999.00 or</p>
-                            <p>$41.62/mo.</p>
-                        </div>
-                    </div>
-                    
-                </div>
-
             </div>
+                    
         </div>
     );
 };

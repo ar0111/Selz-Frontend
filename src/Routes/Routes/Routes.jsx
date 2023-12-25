@@ -7,6 +7,9 @@ import NotFound from "../../Pages/NotFound/NotFound";
 import Dashboard from "../../Pages/Dashboard/Dashboard";
 import PrivateRoute from "./PrivateRoute/PrivateRoute";
 import DashboardLayout from "../../Layout/DashboardLayout";
+import AddCategories from "../../Pages/Dashboard/AddCategories/AddCategories";
+import AllUsers from "../../Pages/Dashboard/AllUsers/AllUsers";
+import AddProducts from "../../Pages/Dashboard/AddProducts/AddProducts";
 
 const router = createBrowserRouter([
     {
@@ -33,7 +36,21 @@ const router = createBrowserRouter([
     },
     {
         path:'/dashboard',
-        element:<PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>
+        element:<PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
+        children:[
+            {
+                path:'/dashboard',
+                element:<AddCategories></AddCategories>
+            },
+            {
+                path:'/dashboard/all-users', 
+                element:<AllUsers></AllUsers>
+            },
+            {
+                path:'/dashboard/add-products', 
+                element:<AddProducts></AddProducts>
+            }
+        ]
     }
 ])
 
