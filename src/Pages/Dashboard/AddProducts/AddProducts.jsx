@@ -3,8 +3,12 @@ import { useForm } from 'react-hook-form';
 import toast from 'react-hot-toast';
 import { AuthContext } from '../../../Context/AuthProvider';
 import { useQuery } from '@tanstack/react-query';
+import Loading from '../../../Components/Loading';
+import { v4 as uuidv4 } from 'uuid';
 
 const AddProducts = () => {
+    const ID = uuidv4();
+    // console.log(ID);
 
     const {user} = useContext(AuthContext);
     // console.log(user);
@@ -19,10 +23,12 @@ const AddProducts = () => {
         }
     })
 
+    if(isLoading) return <Loading></Loading>
+
     const handleAddProducts = (data, event) =>{
         event.preventDefault();
         // console.log(event.target.role.value);
-        // console.log(data);
+        // console.log(event.target.id.value, data.quantity);
         const image = data.image[0];
         const formData = new FormData();
         formData.append('image', image);
@@ -36,6 +42,8 @@ const AddProducts = () => {
         formData.append('category', event.target.category.value);
         formData.append('description', data.description);
         formData.append('year', data.year);
+        formData.append('id', event.target.id.value);
+        formData.append('quantity', data.quantity);
         // console.log(formData);
 
         fetch('http://localhost:3000/addproducts',{
@@ -59,6 +67,14 @@ const AddProducts = () => {
 
                 <div className='grid grid-cols-1 lg:grid-cols-2 gap-10 p-6'>
                     <div>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Product ID:</span>
+                            </label>
+                            <input {...register("id")} type="text" placeholder="Product ID" className="input input-bordered" required defaultValue={ID} disabled />
+                            {errors.id && <p className='text-red'>{errors.id.message}</p>}
+                        </div>
+
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Name</span>
@@ -110,17 +126,17 @@ const AddProducts = () => {
                     <div>
                         <div className="form-control">
                             <label className="label">
-                                <span className="label-text">Mobile Number</span>
+                                <span className="label-text">Product Quantity</span>
                             </label>
-                            <input {...register("phone")} type="text" placeholder="Mobile Number" className="input input-bordered" min={0} required />
-                            {errors.phone && <p className='text-red'>{errors.phone.message}</p>}
+                            <input {...register("quantity")} type="number" placeholder="Product Quantity" className="input input-bordered" min={0} required />
+                            {errors.quantity && <p className='text-red'>{errors.quantity.message}</p>}
                         </div>
 
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Mobile Number</span>
                             </label>
-                            <input {...register("phone")} type="text" placeholder="Mobile Number" className="input input-bordered" min={0} required />
+                            <input {...register("phone")} type="text" placeholder="Mobile Number" className="input input-bordered" required />
                             {errors.phone && <p className='text-red'>{errors.phone.message}</p>}
                         </div>
 

@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { AuthContext } from '../../../Context/AuthProvider';
 import { useQuery } from '@tanstack/react-query'
 import ProductCard from './ProductCard';
+import Loading from '../../../Components/Loading';
 
 const MyProducts = () => {
     const {user} = useContext(AuthContext);
@@ -17,9 +18,11 @@ const MyProducts = () => {
         }
     })
 
+    if(isLoading) return <Loading></Loading>
+
     return (
         <div className='container mx-auto my-10'>
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-6 md:px-0'>
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1 px-6 md:px-0'>
                 {/* {
                     myproducts.map((product, idx) => <ProductCard product={product} key={idx}></ProductCard>)
                 } */}
@@ -27,6 +30,7 @@ const MyProducts = () => {
                     myproducts.map((product,idx) => <ProductCard 
                         product = {product}
                         key = {idx}
+                        refetch = {refetch}
                     ></ProductCard>)
                 }
             </div>

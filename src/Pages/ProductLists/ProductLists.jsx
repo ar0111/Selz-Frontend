@@ -2,6 +2,7 @@ import React from 'react';
 import { useQuery } from '@tanstack/react-query'
 import { useParams } from 'react-router-dom';
 import ProductPage from './ProductPage';
+import Loading from '../../Components/Loading';
 
 const ProductLists = () => {
     const params = useParams();
@@ -17,6 +18,8 @@ const ProductLists = () => {
             return data;
         }
     })
+
+    if(isLoading) return <Loading></Loading>
 
     return (
         <div className='container mx-auto my-10'>

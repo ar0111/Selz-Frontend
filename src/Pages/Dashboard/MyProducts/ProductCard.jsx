@@ -1,8 +1,28 @@
 import React from 'react';
+import toast from 'react-hot-toast';
 
-const ProductCard = ({product}) => {
-    const {name, price, condition, seller, email, phone, location, description, year, image, category} = product;
-    console.log(product);
+const ProductCard = ({product, refetch}) => {
+    const {name, price, condition, seller, email, phone, location, description, year, image, category, id, quantity} = product;
+    // console.log(product);
+
+    const deleteProduct = () =>{
+        const agree = window.confirm(`Are you want to delete ${name}`);
+        if(agree){
+            // console.log("Yes Agree");
+            fetch(`http://localhost:3000/myproducts/${category}/${id}`, {
+                method: "DELETE"
+            })
+            .then(res=>res.json())
+            .then(data=>{
+                console.log(data);
+                if(data.acknowledged){
+                    toast.success("Delete Product Successfully")
+                    refetch();
+                }
+            })
+        }
+    }
+    
     return (
         <div>
             <div className="card w-auto bg-base-100 shadow-xl overflow-hidden">
@@ -11,6 +31,10 @@ const ProductCard = ({product}) => {
                     <div className="overflow-x-auto">
                         <table className="table">
                             <tbody>
+                                <tr>
+                                    <th>Product ID:</th>
+                                    <td>{id}</td>
+                                </tr>
                                 <tr>
                                     <th>Product Category:</th>
                                     <td>{category}</td>
@@ -22,6 +46,10 @@ const ProductCard = ({product}) => {
                                 <tr>
                                     <th>Price:</th>
                                     <td>${price}</td>
+                                </tr>
+                                <tr>
+                                    <th>Quantity:</th>
+                                    <td>{quantity}</td>
                                 </tr>
                                 <tr>
                                     <th>Product Condition:</th>
@@ -48,10 +76,6 @@ const ProductCard = ({product}) => {
                                     <td>{year}</td>
                                 </tr>
                                 <tr>
-                                    <th>Products Quantity:</th>
-                                    <td>{}</td>
-                                </tr>
-                                <tr>
                                     <th>Description:</th>
                                     <td>{description}</td>
                                 </tr>
@@ -60,7 +84,7 @@ const ProductCard = ({product}) => {
                     </div>
                     <div className="card-actions justify-around mt-6">
                         <button className="btn btn-info uppercase px-10">Update</button>
-                        <button className="btn btn-info uppercase px-10">Delete</button>
+                        <button onClick={()=> deleteProduct()} className="btn btn-info uppercase px-10">Delete</button>
                     </div>
                 </div>
             </div>
