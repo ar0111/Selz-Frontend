@@ -10,6 +10,8 @@ import DashboardLayout from "../../Layout/DashboardLayout";
 import AddCategories from "../../Pages/Dashboard/AddCategories/AddCategories";
 import AllUsers from "../../Pages/Dashboard/AllUsers/AllUsers";
 import AddProducts from "../../Pages/Dashboard/AddProducts/AddProducts";
+import ProductLists from "../../Pages/ProductLists/ProductLists";
+import MyProducts from "../../Pages/Dashboard/MyProducts/MyProducts";
 
 const router = createBrowserRouter([
     {
@@ -19,6 +21,10 @@ const router = createBrowserRouter([
             {
                 path:'/',
                 element:<Home></Home>
+            },
+            {
+                path:'/products/:id',
+                element:<PrivateRoute><ProductLists></ProductLists></PrivateRoute>
             },
             {
                 path:'/login',
@@ -49,6 +55,10 @@ const router = createBrowserRouter([
             {
                 path:'/dashboard/add-products', 
                 element:<AddProducts></AddProducts>
+            },
+            {
+                path:'/dashboard/my-products', 
+                element:<MyProducts></MyProducts>
             }
         ]
     }

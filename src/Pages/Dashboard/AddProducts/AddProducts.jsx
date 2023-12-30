@@ -7,7 +7,7 @@ import { useQuery } from '@tanstack/react-query';
 const AddProducts = () => {
 
     const {user} = useContext(AuthContext);
-    console.log(user);
+    // console.log(user);
     const {register, handleSubmit, reset, formState: { errors }} = useForm();
 
     const { data: categories = [], refetch, isLoading } = useQuery({
@@ -108,6 +108,14 @@ const AddProducts = () => {
                     </div>
                     
                     <div>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">Mobile Number</span>
+                            </label>
+                            <input {...register("phone")} type="text" placeholder="Mobile Number" className="input input-bordered" min={0} required />
+                            {errors.phone && <p className='text-red'>{errors.phone.message}</p>}
+                        </div>
+
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">Mobile Number</span>
