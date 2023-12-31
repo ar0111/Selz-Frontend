@@ -5,10 +5,12 @@ import { AuthContext } from '../../../Context/AuthProvider';
 import { useQuery } from '@tanstack/react-query';
 import Loading from '../../../Components/Loading';
 import { v4 as uuidv4 } from 'uuid';
+import { useNavigate } from 'react-router-dom';
 
 const AddProducts = () => {
     const ID = uuidv4();
     // console.log(ID);
+    const navigate = useNavigate();
 
     const {user} = useContext(AuthContext);
     // console.log(user);
@@ -55,6 +57,7 @@ const AddProducts = () => {
             if(data.modifiedCount > 0){
                 toast.success('Product Added Successfully')
                 reset();
+                navigate('/dashboard/my-products')
             }
         })
         .catch(err => console.log("Selz Error ",err))

@@ -1,5 +1,6 @@
 import React from 'react';
 import toast from 'react-hot-toast';
+import { Link } from 'react-router-dom';
 
 const ProductCard = ({product, refetch}) => {
     const {name, price, condition, seller, email, phone, location, description, year, image, category, id, quantity} = product;
@@ -83,7 +84,7 @@ const ProductCard = ({product, refetch}) => {
                         </table>
                     </div>
                     <div className="card-actions justify-around mt-6">
-                        <button className="btn btn-info uppercase px-10">Update</button>
+                        <Link to={`/update/${category}/${id}`}><button className="btn btn-info uppercase px-10">Update</button></Link>
                         <button onClick={()=> deleteProduct()} className="btn btn-info uppercase px-10">Delete</button>
                     </div>
                 </div>

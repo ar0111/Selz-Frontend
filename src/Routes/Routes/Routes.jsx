@@ -12,6 +12,7 @@ import AllUsers from "../../Pages/Dashboard/AllUsers/AllUsers";
 import AddProducts from "../../Pages/Dashboard/AddProducts/AddProducts";
 import ProductLists from "../../Pages/ProductLists/ProductLists";
 import MyProducts from "../../Pages/Dashboard/MyProducts/MyProducts";
+import UpdateProduct from "../../Pages/Dashboard/MyProducts/UpdateProduct";
 
 const router = createBrowserRouter([
     {
@@ -33,6 +34,11 @@ const router = createBrowserRouter([
             {
                 path:'/signup',
                 element:<SignUp></SignUp>
+            },
+            {
+                path:'/update/:category/:id',
+                element:<UpdateProduct></UpdateProduct>,
+                loader:({params}) => fetch(`http://localhost:3000/update/${params.category}/${params.id}`)
             },
             {
                 path:'*',

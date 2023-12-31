@@ -20,7 +20,7 @@ const Categories = () => {
             <div className='pt-6'>
                 <div className='grid grid-cols-1 md:grid-cols-4 gap-4'>
                     {
-                        categories.map(category => <Link to={`/products/${category._id}`}><CategoryCard category={category} key={category._id}></CategoryCard></Link>)
+                        categories.map((category, idx) => <Link to={`/products/${category._id}`}><CategoryCard category={category} key={idx}></CategoryCard></Link>)
                     }
                 </div>
             </div>
