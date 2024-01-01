@@ -33,15 +33,18 @@ const ProductLists = () => {
                 {   
                     productList.map((product, idx) => <ProductPage 
                         product={product} 
-                        key={idx}
+                        key={product.id}
                         setDesireProduct={setDesireProduct}
                     ></ProductPage>)
                 }
             </div>
-
-            <BookingModal
-                desireProduct={desireProduct}
-            ></BookingModal>
+            
+            {
+                desireProduct && <BookingModal
+                    desireProduct={desireProduct}
+                ></BookingModal>
+            }
+            
             
         </div>
     );
