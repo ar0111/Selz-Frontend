@@ -39,7 +39,7 @@ const UpdateProduct = ({category, id}) => {
                     <h1 className='px-8 font-semibold text-xl text-center'>Update Product</h1>
                     <form onSubmit={handleSubmit(handleUpdateProducts)}>
 
-                        <div className="form-control">
+                        <div className="form-control my-4">
                             <label className="label">
                                 <span className="label-text">Updated Quantity</span>
                             </label>

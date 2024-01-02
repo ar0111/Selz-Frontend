@@ -42,6 +42,8 @@ const ProductLists = () => {
             {
                 desireProduct && <BookingModal
                     desireProduct={desireProduct}
+                    setDesireProduct={setDesireProduct}
+                    refetch={refetch}
                 ></BookingModal>
             }
             

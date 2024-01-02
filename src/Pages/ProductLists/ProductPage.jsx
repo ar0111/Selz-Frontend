@@ -1,7 +1,8 @@
 import React from 'react';
+import EmptyProductButton from './EmptyProductButton';
 
 const ProductPage = ({product, setDesireProduct}) => {
-    const {name, price, condition, seller, email, phone, location, description, year, image} = product;
+    const {name, price, condition, seller, email, phone, location, description, year, image, quantity} = product;
     // console.log(typeof(product));
     // console.log('selected product', product);
     return (
@@ -47,9 +48,14 @@ const ProductPage = ({product, setDesireProduct}) => {
                             </tbody>
                         </table>
                     </div>
-                    <div className="card-actions justify-center">
-                        <label htmlFor='booking-modal' className="btn btn-info uppercase" onClick={() => setDesireProduct(product)}>Book Now</label>
-                    </div>
+
+                    {
+                        quantity !== '0'?  <div className="card-actions justify-center">
+                            <label htmlFor='booking-modal' className="btn btn-info uppercase" onClick={() => setDesireProduct(product)}>Book Now</label>  
+                        </div> : <EmptyProductButton></EmptyProductButton>
+                    }
+
+                    
 
                     {/* <div className="card-actions justify-center">
                         <label htmlFor="booking-modal" className="btn btn-primary bg-gradient-to-r from-primary to-secondary text-white"

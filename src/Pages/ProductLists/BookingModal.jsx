@@ -1,12 +1,13 @@
 import React, { useContext } from 'react';
 import { AuthContext } from '../../Context/AuthProvider';
+import toast from 'react-hot-toast';
 
-const BookingModal = ({desireProduct}) => {
-    // console.log(desireProduct);
+const BookingModal = ({desireProduct, setDesireProduct, refetch}) => {
+    console.log(desireProduct);
 
     const {user} = useContext(AuthContext);
     console.log(user.displayName);
-    const {name, price} = desireProduct;
+    const {name, price, category, id, quantity} = desireProduct;
 
     const handleBooking = (event)=> {
         event.preventDefault();
@@ -15,7 +16,7 @@ const BookingModal = ({desireProduct}) => {
         const name = form.name.value;
         // console.log(name);
         const price = form.price.value;
-        // console.log(price);
+        // console.log(typeof(parseInt(price)));
         const buyer = form.buyer.value;
         const email = form.email.value;
         const number = form.number.value;
@@ -37,10 +38,32 @@ const BookingModal = ({desireProduct}) => {
             },
             body: JSON.stringify(booking)
         })
-        .then(res=>res.json)
+        .then(res=>res.json())
         .then(data=>{
             console.log(data);
+            if(data.acknowledged){
+                setDesireProduct(null);
+                toast.success("Booking Confirmed!");
+                refetch();
+            }
         })
+
+        const updatedProduct = {
+            quantity
+        }
+
+        fetch(`http://localhost:3000/updateproduct/${category}/${id}`, {
+        method: 'PUT',
+        headers:{
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify(updatedProduct)
+        })
+        .then(res => res.json())
+        .then(data => {
+        })
+
+
     }
 
     return (

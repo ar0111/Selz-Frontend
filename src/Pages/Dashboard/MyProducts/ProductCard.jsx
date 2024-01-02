@@ -33,10 +33,6 @@ const ProductCard = ({product, refetch}) => {
                         <table className="table">
                             <tbody>
                                 <tr>
-                                    <th>Product ID:</th>
-                                    <td>{id}</td>
-                                </tr>
-                                <tr>
                                     <th>Product Category:</th>
                                     <td>{category}</td>
                                 </tr>
@@ -50,7 +46,9 @@ const ProductCard = ({product, refetch}) => {
                                 </tr>
                                 <tr>
                                     <th>Quantity:</th>
-                                    <td>{quantity}</td>
+                                    <td>{
+                                        quantity !=='0'? quantity : <p className='uppercase text-red font-bold text-lg'>Sold Out</p>
+                                    }</td>
                                 </tr>
                                 <tr>
                                     <th>Product Condition:</th>
