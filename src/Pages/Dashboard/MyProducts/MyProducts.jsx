@@ -6,6 +6,7 @@ import Loading from '../../../Components/Loading';
 
 const MyProducts = () => {
     const {user} = useContext(AuthContext);
+    console.log(user);
 
     const { data: myproducts = [], refetch, isLoading } = useQuery({
         queryKey: ['myproducts', user.email],

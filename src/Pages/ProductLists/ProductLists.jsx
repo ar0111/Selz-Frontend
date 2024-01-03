@@ -21,7 +21,7 @@ const ProductLists = () => {
         }
     })
 
-    // console.log(productList.length);
+    // console.log(productList);
 
     if(isLoading) return <Loading></Loading>
 
@@ -29,6 +29,7 @@ const ProductLists = () => {
 
     return (
         <div className='container mx-auto my-10'>
+            <h1 className='text-3xl font-bold mb-10 ps-6 md:ps-0'>All {productList[0].category} List</h1>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 px-6 md:px-0'>
                 {   
                     productList.map((product, idx) => <ProductPage 

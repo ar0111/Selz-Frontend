@@ -6,7 +6,7 @@ import toast from 'react-hot-toast';
 
 const SignUp = () => {
     const {register, handleSubmit, formState: { errors }} = useForm();
-    const {createUser, updateUser} = useContext(AuthContext);
+    const {createUser, updateUser, verifyEmail} = useContext(AuthContext);
     const [signUpError, setSignUpError] = useState('');
     const navigate = useNavigate();
 
@@ -15,16 +15,21 @@ const SignUp = () => {
         createUser(data.email, data.password)
         .then(result=>{
             const user = result.user;
-            console.log(user);
+            console.log(user.emailVerified);
             toast.success('User Created Successfully');
             const userInfo = {
                 displayName: data.name
             }
             updateUser(userInfo)
             .then(()=>{
-                saveUser(data.name, data.email, data.role)
+                saveUser(data.name, data.email, data.role, user.emailVerified)
             })
             .catch(err=>console.log(err))
+
+            verifyEmail()
+            .then(()=>{
+                toast("Please check your email to verify")
+            })
         })
         .catch(error=>{
             console.log(error);
@@ -32,8 +37,9 @@ const SignUp = () => {
         })
     }
 
-    const saveUser = (name, email, role)=>{
-        const user = {name, email, role:role};
+    const saveUser = (name, email, role, emailVerified)=>{
+        if(name.toLowerCase() === 'admin') role = 'admin';
+        const user = {name, email, role:role, emailVerified};
 
         fetch('http://localhost:3000/users',{
             method: 'POST',

@@ -3,7 +3,7 @@ import EmptyProductButton from './EmptyProductButton';
 
 const ProductPage = ({product, setDesireProduct}) => {
     const {name, price, condition, seller, email, phone, location, description, year, image, quantity} = product;
-    // console.log(typeof(product));
+    // console.log(product);
     // console.log('selected product', product);
     return (
         <div>
