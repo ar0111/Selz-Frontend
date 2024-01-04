@@ -6,7 +6,7 @@ import toast from 'react-hot-toast';
 
 const Login = () => {
     const {register, handleSubmit, formState: { errors }} = useForm();
-    const {signIn} = useContext(AuthContext);
+    const {signIn, user} = useContext(AuthContext);
     const [loginError, setLoginError] = useState('');
     const location = useLocation();
     const navigate = useNavigate();
@@ -21,6 +21,19 @@ const Login = () => {
             const user = result.user;
             console.log(user);
             toast.success('User Login Successfully');
+            if(user.emailVerified){
+                fetch(`http://localhost:3000/users/${data.email}`,{
+                    method: 'PUT',
+                    headers:{
+                        'content-type':'application/json'
+                    },
+                    body: JSON.stringify({user})
+                })
+                .then(res=>res.json())
+                .then(data=>{
+                    console.log(data);
+                })
+            }
             navigate(from), {replace:true};
         })
         .catch(error=>{
