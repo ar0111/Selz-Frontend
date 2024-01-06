@@ -17,7 +17,14 @@ export default {
       'warning': '#fbbf24',
       'black': '#000000',
       'slate': '#0f172a',
-      'amber':'#b45309'
+      'amber':'#b45309',
+      'cyan':{
+        100:'#cffafe',
+        200:'#a5f3fc',
+        300:'#67e8f9',
+        400:'#22d3ee',
+        500:'#06b6d4'
+      }
     },
     extend: {},
   },

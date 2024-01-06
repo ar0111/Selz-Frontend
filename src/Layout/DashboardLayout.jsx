@@ -20,9 +20,9 @@ const DashboardLayout = () => {
                         {/* Sidebar content here */}
                         <li className='text-black uppercase'><Link className='' to='/dashboard'>Create Categories</Link></li>
                         <li className='text-black uppercase'><Link to='/dashboard/all-users'>All Users</Link></li>
-                        <li className='text-black uppercase'><Link>All Sellers</Link></li>
+                        <li className='text-black uppercase'><Link to='/dashboard/all-sellers'>All Sellers</Link></li>
                         <li className='text-black uppercase'><Link to='/dashboard/add-products'>Add Products</Link></li>
-                        <li className='text-black uppercase'><Link>All Buyers</Link></li>
+                        <li className='text-black uppercase'><Link to='/dashboard/all-buyers'>All Buyers</Link></li>
                         <li className='text-black uppercase'><Link>My Orders</Link></li>
                         <li className='text-black uppercase'><Link to='/dashboard/my-products'>My Products</Link></li>
                     </ul>

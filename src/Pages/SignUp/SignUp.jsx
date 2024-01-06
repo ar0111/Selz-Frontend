@@ -38,8 +38,12 @@ const SignUp = () => {
     }
 
     const saveUser = (name, email, role, emailVerified)=>{
-        if(name.toLowerCase() === 'admin') role = 'admin';
-        const user = {name, email, role:role, emailVerified};
+        let isAdmin = '';
+        if(name.toLowerCase() === 'admin') {
+            role = 'admin',
+            isAdmin = 'admin'
+        };
+        const user = {name, email, role:role, emailVerified, primaryRole:isAdmin};
 
         fetch('http://localhost:3000/users',{
             method: 'POST',

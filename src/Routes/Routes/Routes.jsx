@@ -13,6 +13,8 @@ import AddProducts from "../../Pages/Dashboard/AddProducts/AddProducts";
 import ProductLists from "../../Pages/ProductLists/ProductLists";
 import MyProducts from "../../Pages/Dashboard/MyProducts/MyProducts";
 import UpdateProduct from "../../Pages/Dashboard/MyProducts/UpdateProduct";
+import AllSellers from "../../Pages/Dashboard/AllSellers/AllSellers";
+import AllBuyers from "../../Pages/Dashboard/AllBuyers/AllBuyers";
 
 const router = createBrowserRouter([
     {
@@ -57,6 +59,14 @@ const router = createBrowserRouter([
             {
                 path:'/dashboard/all-users', 
                 element:<AllUsers></AllUsers>
+            },
+            {
+                path:'/dashboard/all-sellers', 
+                element:<AllSellers></AllSellers>
+            },
+            {
+                path:'/dashboard/all-buyers', 
+                element:<AllBuyers></AllBuyers>
             },
             {
                 path:'/dashboard/add-products', 
