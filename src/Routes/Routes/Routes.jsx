@@ -5,7 +5,6 @@ import SignUp from "../../Pages/SignUp/SignUp";
 import Login from "../../Pages/Login/Login";
 import NotFound from "../../Pages/NotFound/NotFound";
 import Dashboard from "../../Pages/Dashboard/Dashboard";
-import PrivateRoute from "./PrivateRoute/PrivateRoute";
 import DashboardLayout from "../../Layout/DashboardLayout";
 import AddCategories from "../../Pages/Dashboard/AddCategories/AddCategories";
 import AllUsers from "../../Pages/Dashboard/AllUsers/AllUsers";
@@ -15,6 +14,9 @@ import MyProducts from "../../Pages/Dashboard/MyProducts/MyProducts";
 import UpdateProduct from "../../Pages/Dashboard/MyProducts/UpdateProduct";
 import AllSellers from "../../Pages/Dashboard/AllSellers/AllSellers";
 import AllBuyers from "../../Pages/Dashboard/AllBuyers/AllBuyers";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import AdminRoute from "../AdminRoute/AdminRoute";
+import AdminSellerRoute from "../AdminSellerRoute/AdminSellerRoute";
 
 const router = createBrowserRouter([
     {
@@ -53,28 +55,28 @@ const router = createBrowserRouter([
         element:<PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
         children:[
             {
-                path:'/dashboard',
-                element:<AddCategories></AddCategories>
+                path:'/dashboard/addcategories',
+                element:<AdminRoute><AddCategories></AddCategories></AdminRoute>
             },
             {
                 path:'/dashboard/all-users', 
-                element:<AllUsers></AllUsers>
+                element:<AdminRoute><AllUsers></AllUsers></AdminRoute>
             },
             {
                 path:'/dashboard/all-sellers', 
-                element:<AllSellers></AllSellers>
+                element:<AdminRoute><AllSellers></AllSellers></AdminRoute>
             },
             {
                 path:'/dashboard/all-buyers', 
-                element:<AllBuyers></AllBuyers>
+                element:<AdminRoute><AllBuyers></AllBuyers></AdminRoute>
             },
             {
                 path:'/dashboard/add-products', 
-                element:<AddProducts></AddProducts>
+                element:<AdminSellerRoute><AddProducts></AddProducts></AdminSellerRoute>
             },
             {
                 path:'/dashboard/my-products', 
-                element:<MyProducts></MyProducts>
+                element:<AdminSellerRoute><MyProducts></MyProducts></AdminSellerRoute>
             }
         ]
     }
