@@ -17,6 +17,11 @@ import AllBuyers from "../../Pages/Dashboard/AllBuyers/AllBuyers";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import AdminRoute from "../AdminRoute/AdminRoute";
 import AdminSellerRoute from "../AdminSellerRoute/AdminSellerRoute";
+import AdminBuyerRoute from "../AdminBuyerRoute/AdminBuyerRoute";
+import MyOrders from "../../Pages/Dashboard/MyOrders/MyOrders";
+import Cart from "../../Pages/ProductCart/Cart";
+import MyProfile from "../../Pages/Dashboard/MyProfile/MyProfile";
+import EditProfile from "../../Pages/Dashboard/MyProfile/EditProfile";
 
 const router = createBrowserRouter([
     {
@@ -30,6 +35,10 @@ const router = createBrowserRouter([
             {
                 path:'/products/:id',
                 element:<PrivateRoute><ProductLists></ProductLists></PrivateRoute>
+            },
+            {
+                path:'/cart',
+                element:<PrivateRoute><Cart></Cart></PrivateRoute>
             },
             {
                 path:'/login',
@@ -55,6 +64,14 @@ const router = createBrowserRouter([
         element:<PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute>,
         children:[
             {
+                path:'/dashboard',
+                element:<MyProfile></MyProfile>
+            },
+            {
+                path:'/dashboard/edit-profile',
+                element:<EditProfile></EditProfile>
+            },
+            {
                 path:'/dashboard/addcategories',
                 element:<AdminRoute><AddCategories></AddCategories></AdminRoute>
             },
@@ -77,6 +94,10 @@ const router = createBrowserRouter([
             {
                 path:'/dashboard/my-products', 
                 element:<AdminSellerRoute><MyProducts></MyProducts></AdminSellerRoute>
+            },
+            {
+                path:'/dashboard/my-orders', 
+                element:<AdminBuyerRoute><MyOrders></MyOrders></AdminBuyerRoute>
             }
         ]
     }

@@ -9,9 +9,9 @@ const MyProducts = () => {
     console.log(user);
 
     const { data: myproducts = [], refetch, isLoading } = useQuery({
-        queryKey: ['myproducts', user.email],
+        queryKey: ['myproducts', user?.email],
         queryFn: async()=>{
-            const res = await fetch(`http://localhost:3000/myproducts/${user.email}`);
+            const res = await fetch(`http://localhost:3000/myproducts/${user?.email}`);
             const data = await res.json();
             // console.log(data);
             // const finalData = JSON.stringify(data);

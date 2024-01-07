@@ -2,9 +2,14 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useLoaderData } from 'react-router-dom';
 import toast from 'react-hot-toast';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 const UpdateProduct = ({category, id}) => {
     const desireProduct = useLoaderData();
+    const location = useLocation();
+    const navigate = useNavigate();
+
+    const from = location.state?.from?.pathname || '/dashboard/my-products';
     // console.log(desireProduct[0].category);
 
     const {register, handleSubmit, reset, formState: { errors }} = useForm();
@@ -28,6 +33,7 @@ const UpdateProduct = ({category, id}) => {
                 if(data.modifiedCount > 0){
                     toast.success('Product Updated Successfully')
                     reset();
+                    navigate(from), {replace:true};
                 }
             })
     }

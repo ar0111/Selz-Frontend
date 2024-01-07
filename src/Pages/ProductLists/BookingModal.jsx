@@ -7,7 +7,7 @@ const BookingModal = ({desireProduct, setDesireProduct, refetch}) => {
 
     const {user} = useContext(AuthContext);
     console.log(user.displayName);
-    const {name, price, category, id, quantity} = desireProduct;
+    const {name, price, category, id, quantity, image, seller, phone} = desireProduct;
 
     const handleBooking = (event)=> {
         event.preventDefault();
@@ -28,7 +28,11 @@ const BookingModal = ({desireProduct, setDesireProduct, refetch}) => {
             buyerName: buyer,
             buyerEmail: email,
             contactNumber: number,
-            location
+            location,
+            image, seller,
+            sellercontact: phone,
+            productID: id,
+            productCategory: category
         }
 
         fetch('http://localhost:3000/bookings',{

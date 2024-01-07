@@ -72,7 +72,7 @@ const ProductPage = ({product, setDesireProduct}) => {
                     </div>
 
                     {
-                        quantity !== '0'?  <div className="card-actions justify-center">
+                        quantity !== '0' || quantity !== 'NaN'?  <div className="card-actions justify-center">
                             <label htmlFor='booking-modal' className="btn btn-info uppercase" onClick={() => setDesireProduct(product)}>Book Now</label>  
                         </div> : <EmptyProductButton></EmptyProductButton>
                     }

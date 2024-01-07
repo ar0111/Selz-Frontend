@@ -21,7 +21,7 @@ const DashboardLayout = () => {
         }
     },[user?.email])
 
-    console.log(data);
+    // console.log(data);
 
     return (
         <div>
@@ -37,6 +37,7 @@ const DashboardLayout = () => {
                     <label htmlFor="dashboard-drawer" aria-label="close sidebar" className="drawer-overlay"></label> 
                     <ul className="menu p-4 w-80 min-h-full bg-gray">
                         {/* Sidebar content here */}
+                        <li className='text-black uppercase'><Link to='/dashboard'>My Profile</Link></li>
                         {
                             isAdmin && <>
                                 <li className='text-black uppercase'><Link to='/dashboard/addcategories'>Create Categories</Link></li>
@@ -55,7 +56,7 @@ const DashboardLayout = () => {
 
                         {
                             (isAdmin || data.role === 'Buyer') && <>
-                                <li className='text-black uppercase'><Link>My Orders</Link></li>
+                                <li className='text-black uppercase'><Link to='/dashboard/my-orders'>My Orders</Link></li>
                             </>
                         }
                         

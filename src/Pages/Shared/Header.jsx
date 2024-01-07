@@ -8,6 +8,7 @@ import account from '../../assets/images/user.svg';
 import cart from '../../assets/images/cart.svg';
 import menu from '../../assets/images/menu.svg';
 import { AuthContext } from '../../Context/AuthProvider';
+import ordersSummary from '../../Hooks/ordersSummary';
 
 const Header = () => {
 
@@ -17,6 +18,8 @@ const Header = () => {
         .then(()=>{})
         .catch(err=>console.log(err))
     }
+
+    const [orderLength, total] = ordersSummary(user?.email);
 
     return (
         <>
@@ -58,7 +61,16 @@ const Header = () => {
                                     </ul>
                                 </details> */}
                                 {
-                                    user?.uid? <button className='text-white text-sm' onClick={handleSignOut}>Sign Out</button> : <>
+                                    user?.uid? <>
+                                        <div className="dropdown">
+                                            <div tabIndex={0} role="button" className="text-white">Welcome, <br/>{user?.displayName}</div>
+                                            <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
+                                                <li><button className='text-sm' onClick={handleSignOut}>Sign Out</button></li>
+                                                <li><Link to='/signup'>Profile</Link></li>
+                                            </ul>
+                                        </div>  
+                                        
+                                    </> : <>
                                         <div className="dropdown">
                                             <div tabIndex={0} role="button" className="text-white">Login <br/>My Account</div>
                                             <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
@@ -71,10 +83,10 @@ const Header = () => {
                                         
                             </div>
                             <div className='flex justify-start gap-4'>
-                                <img src={cart} alt="" />
+                                <Link to='/cart'><img src={cart} alt="" /></Link>
                                 <div className='flex my-auto flex-col'>
-                                    <span className='bg-white px-4 rounded-lg text-sm'>0</span>
-                                    <p className='text-white'>$0.00</p>
+                                    <span className='bg-white px-4 rounded-lg text-sm'>{orderLength}</span>
+                                    <p className='text-white'>${total}</p>
                                 </div>
                             </div>
                         </div>
@@ -104,7 +116,6 @@ const Header = () => {
                         <label htmlFor="dashboard-drawer" className="btn btn-white drawer-button lg:hidden"><svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" /></svg></label>
                         <div className='flex text-white justify-start gap-6 text-sm font-medium	'>
                             <div><Link to='/'>HOME</Link></div>
-                            <div><Link>OUR STORE</Link></div>
                             <div><Link to='/blogs'>BLOGS</Link></div>
                             <div><Link to='/contact'>CONTACT</Link></div>
                             {
