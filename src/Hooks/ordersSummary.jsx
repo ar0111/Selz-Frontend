@@ -27,7 +27,7 @@ const ordersSummary = (email) => {
         }
     }
 
-    let deliveryCharge = 20;
+    let deliveryCharge = orderPrice*0.05;
     let tax = orderPrice * 0.1;
     let total = orderPrice + deliveryCharge + tax;
 

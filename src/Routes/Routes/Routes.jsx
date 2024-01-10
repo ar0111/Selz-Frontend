@@ -49,11 +49,6 @@ const router = createBrowserRouter([
                 element:<SignUp></SignUp>
             },
             {
-                path:'/update/:category/:id',
-                element:<UpdateProduct></UpdateProduct>,
-                loader:({params}) => fetch(`http://localhost:3000/update/${params.category}/${params.id}`)
-            },
-            {
                 path:'*',
                 element:<NotFound></NotFound>
             }
@@ -66,6 +61,10 @@ const router = createBrowserRouter([
             {
                 path:'/dashboard',
                 element:<MyProfile></MyProfile>
+            },
+            {
+                path:'/dashboard/edit-profile/:id',
+                element:<EditProfile></EditProfile>
             },
             {
                 path:'/dashboard/edit-profile',
@@ -94,6 +93,11 @@ const router = createBrowserRouter([
             {
                 path:'/dashboard/my-products', 
                 element:<AdminSellerRoute><MyProducts></MyProducts></AdminSellerRoute>
+            },
+            {
+                path:'/dashboard/update/:category/:id',
+                element:<AdminSellerRoute><UpdateProduct></UpdateProduct></AdminSellerRoute>,
+                loader:({params}) => fetch(`http://localhost:3000/update/${params.category}/${params.id}`)
             },
             {
                 path:'/dashboard/my-orders', 

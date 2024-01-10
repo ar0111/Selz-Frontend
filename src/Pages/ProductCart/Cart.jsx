@@ -55,7 +55,7 @@ const Cart = () => {
         orders.map(order => orderPrice += parseInt(order.productPrice))
     }
 
-    let deliveryCharge = 20;
+    let deliveryCharge = orderPrice*0.05;
 
     return (
         <div className='container mx-auto my-16'>
