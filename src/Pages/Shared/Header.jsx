@@ -66,7 +66,7 @@ const Header = () => {
                                             <div tabIndex={0} role="button" className="text-white">Welcome, <br/>{user?.displayName}</div>
                                             <ul tabIndex={0} className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52">
                                                 <li><button className='text-sm' onClick={handleSignOut}>Sign Out</button></li>
-                                                <li><Link to='/signup'>Profile</Link></li>
+                                                <li><Link to='/dashboard'>Profile</Link></li>
                                             </ul>
                                         </div>  
                                         
@@ -85,7 +85,8 @@ const Header = () => {
                             <div className='flex justify-start gap-4'>
                                 <Link to='/cart'><img src={cart} alt="" /></Link>
                                 <div className='flex my-auto flex-col'>
-                                    <span className='bg-white px-4 rounded-lg text-sm'>{orderLength}</span>
+                                    {orderLength > 0 ? <span className='bg-white px-4 rounded-lg text-sm'>{orderLength}</span> : <span className='bg-white px-4 rounded-lg text-sm'>0</span>}
+                                    
                                     <p className='text-white'>${total}</p>
                                 </div>
                             </div>
