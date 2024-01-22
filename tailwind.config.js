@@ -10,6 +10,7 @@ export default {
       current: 'currentColor',
       'white': 'rgb(255 255 255)',
       'gray': '#e5e7eb',
+      'gray-100': '#f3f4f6',
       'midnight': '#232f3e',
       'metal': '#565584',
       'red': '#dc2626',

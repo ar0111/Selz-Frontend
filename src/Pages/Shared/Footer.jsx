@@ -42,11 +42,11 @@ const Footer = () => {
                         </nav> 
                         <nav>
                             <header className="footer-title">Information</header> 
-                            <a className="link link-hover">Privacy Policy</a>
-                            <a className="link link-hover">Refund Policy</a>
-                            <a className="link link-hover">Shipping Policy</a>
-                            <a className="link link-hover">Terms of Services</a>
-                            <a className="link link-hover">Bolgs</a>
+                            <a className="link link-hover hidden md:block">Privacy Policy</a>
+                            <a className="link link-hover hidden md:block">Refund Policy</a>
+                            <a className="link link-hover hidden md:block">Shipping Policy</a>
+                            <a className="link link-hover hidden md:block">Terms of Services</a>
+                            <a className="link link-hover hidden md:block">Bolgs</a>
                         </nav> 
                         <nav>
                             <header className="footer-title">Account</header> 

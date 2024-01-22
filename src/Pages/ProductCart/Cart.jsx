@@ -117,7 +117,7 @@ const Cart = () => {
                             
                             <div className='flex justify-end'>
                                 <div className='mt-8'>
-                                    <button className='uppercase btn btn-info text-lg px-6'>Checkout</button>
+                                    <Link to='/checkout'><button className='uppercase btn btn-info text-lg px-6'>Checkout</button></Link>
                                 </div>
                             </div>
                         </div>

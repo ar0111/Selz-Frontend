@@ -4,7 +4,6 @@ import Home from "../../Pages/Home/Home";
 import SignUp from "../../Pages/SignUp/SignUp";
 import Login from "../../Pages/Login/Login";
 import NotFound from "../../Pages/NotFound/NotFound";
-import Dashboard from "../../Pages/Dashboard/Dashboard";
 import DashboardLayout from "../../Layout/DashboardLayout";
 import AddCategories from "../../Pages/Dashboard/AddCategories/AddCategories";
 import AllUsers from "../../Pages/Dashboard/AllUsers/AllUsers";
@@ -22,6 +21,7 @@ import MyOrders from "../../Pages/Dashboard/MyOrders/MyOrders";
 import Cart from "../../Pages/ProductCart/Cart";
 import MyProfile from "../../Pages/Dashboard/MyProfile/MyProfile";
 import EditProfile from "../../Pages/Dashboard/MyProfile/EditProfile";
+import Checkout from "../../Pages/ProductCart/Checkout";
 
 const router = createBrowserRouter([
     {
@@ -39,6 +39,10 @@ const router = createBrowserRouter([
             {
                 path:'/cart',
                 element:<PrivateRoute><Cart></Cart></PrivateRoute>
+            },
+            {
+                path:'/checkout',
+                element:<PrivateRoute><Checkout></Checkout></PrivateRoute>
             },
             {
                 path:'/login',
