@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 
 const ProductCard = ({product, refetch}) => {
     const {name, price, condition, seller, email, phone, location, description, year, image, category, id, quantity} = product;
-    // console.log(product);
+    console.log(product);
 
     const deleteProduct = () =>{
         const agree = window.confirm(`Are you want to delete ${name}`);

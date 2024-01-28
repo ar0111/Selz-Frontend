@@ -5,6 +5,7 @@ import { AuthContext } from '../../Context/AuthProvider';
 import Loading from '../../Components/Loading';
 import EmptyOrder from '../Dashboard/MyOrders/EmptyOrder';
 import { RiDeleteBin6Fill } from "react-icons/ri";
+import toast from 'react-hot-toast';
 
 const Cart = () => {
 
@@ -20,6 +21,7 @@ const Cart = () => {
     })
 
     if(isLoading) return <Loading></Loading>
+    refetch();
 
     const deleteOrder = (order)=>{
         console.log(order);
@@ -106,7 +108,7 @@ const Cart = () => {
                             </div>
                             
                             <div className='flex justify-between'>
-                                <h1 className='text-lg my-2'>Taxs(%10)</h1>
+                                <h1 className='text-lg my-2'>Taxs(10%)</h1>
                                 <h1 className='text-lg my-2'>${orderPrice*0.1}</h1>
                             </div>
                             

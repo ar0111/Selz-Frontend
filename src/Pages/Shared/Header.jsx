@@ -8,7 +8,8 @@ import account from '../../assets/images/user.svg';
 import cart from '../../assets/images/cart.svg';
 import menu from '../../assets/images/menu.svg';
 import { AuthContext } from '../../Context/AuthProvider';
-import ordersSummary from '../../Hooks/ordersSummary';
+import { useQuery } from '@tanstack/react-query'
+import Loading from '../../Components/Loading';
 
 const Header = () => {
 
@@ -19,7 +20,30 @@ const Header = () => {
         .catch(err=>console.log(err))
     }
 
-    const [orderLength, total] = ordersSummary(user?.email);
+    // const [orderLength, total] = ordersSummary(user?.email);
+
+    const { data: orders = [], refetch, isLoading } = useQuery({
+        queryKey: ['bookings', user?.email],
+        queryFn: async()=>{
+            const res = await fetch(`http://localhost:3000/bookings?email=${user?.email}`);
+            const data = await res.json();
+            return data;
+        }
+    })
+
+    if(isLoading) return <Loading></Loading>
+    refetch();
+
+    let orderPrice = 0;
+    {   
+        for(let i=0; i<orders.length; i++){
+            orderPrice += parseInt(orders[i].productPrice)
+        }
+    }
+
+    let deliveryCharge = orderPrice*0.05;
+    let tax = orderPrice * 0.1;
+    let total = orderPrice + deliveryCharge + tax;
 
     return (
         <>
@@ -84,10 +108,10 @@ const Header = () => {
                             </div>
                             <div className='flex justify-start gap-4'>
                                 <Link to='/cart'><img src={cart} alt="" /></Link>
-                                <div className='flex my-auto flex-col'>
-                                    {orderLength > 0 ? <span className='bg-white px-4 rounded-lg text-sm'>{orderLength}</span> : <span className='bg-white px-4 rounded-lg text-sm'>0</span>}
+                                <div className='my-auto'>
+                                    {orders.length > 0 ? <span className='bg-white px-4 rounded-lg text-sm'>{orders.length}</span> : <p className='bg-white px-4 rounded-lg text-sm'>0</p>}
                                     
-                                    <p className='text-white'>${total}</p>
+                                    <p className='text-white'>${total.toFixed(2)}</p>
                                 </div>
                             </div>
                         </div>

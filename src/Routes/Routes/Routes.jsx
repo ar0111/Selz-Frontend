@@ -22,6 +22,10 @@ import Cart from "../../Pages/ProductCart/Cart";
 import MyProfile from "../../Pages/Dashboard/MyProfile/MyProfile";
 import EditProfile from "../../Pages/Dashboard/MyProfile/EditProfile";
 import Checkout from "../../Pages/ProductCart/Checkout";
+import Success from "../../Pages/Success/Success";
+import ContactUs from "../../Pages/ContactUs/ContactUs";
+import Blogs from "../../Pages/Blogs/Blogs";
+import SingleBolg from "../../Pages/Blogs/SingleBolg";
 
 const router = createBrowserRouter([
     {
@@ -45,12 +49,28 @@ const router = createBrowserRouter([
                 element:<PrivateRoute><Checkout></Checkout></PrivateRoute>
             },
             {
+                path:'/success',
+                element:<PrivateRoute><Success></Success></PrivateRoute>
+            },
+            {
                 path:'/login',
                 element:<Login></Login>
             },
             {
                 path:'/signup',
                 element:<SignUp></SignUp>
+            },
+            {
+                path:'/contact',
+                element:<ContactUs></ContactUs>
+            },
+            {
+                path:'/blogs',
+                element:<Blogs></Blogs>
+            },
+            {
+                path:'/blogs/:id',
+                element:<SingleBolg></SingleBolg>
             },
             {
                 path:'*',
@@ -101,7 +121,7 @@ const router = createBrowserRouter([
             {
                 path:'/dashboard/update/:category/:id',
                 element:<AdminSellerRoute><UpdateProduct></UpdateProduct></AdminSellerRoute>,
-                loader:({params}) => fetch(`http://localhost:3000/update/${params.category}/${params.id}`)
+                loader:({params}) => fetch(`http://localhost:3000/dashboard/update/${params.category}/${params.id}`)
             },
             {
                 path:'/dashboard/my-orders', 

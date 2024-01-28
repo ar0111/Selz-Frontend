@@ -19,6 +19,7 @@ export default {
       'black': '#000000',
       'slate': '#0f172a',
       'amber':'#b45309',
+      'amber-500':'#f59e0b',
       'cyan':{
         100:'#cffafe',
         200:'#a5f3fc',

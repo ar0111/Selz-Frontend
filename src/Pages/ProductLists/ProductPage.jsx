@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import EmptyProductButton from './EmptyProductButton';
 import { Checkmark } from 'react-checkmark'
 
-const ProductPage = ({product, setDesireProduct}) => {
+const ProductPage = ({product, setDesireProduct, refetch}) => {
     const {name, price, condition, seller, email, phone, location, description, year, image, quantity} = product;
     const [data, setData] = useState({})
     // console.log(product);
@@ -72,8 +72,10 @@ const ProductPage = ({product, setDesireProduct}) => {
                     </div>
 
                     {
-                        quantity !== '0' || quantity !== 'NaN'?  <div className="card-actions justify-center">
-                            <label htmlFor='booking-modal' className="btn btn-info uppercase" onClick={() => setDesireProduct(product)}>Book Now</label>  
+                        quantity !== '0' || quantity == 'NaN'?  <div className="card-actions justify-center">
+                            <label htmlFor='booking-modal' className="btn btn-info uppercase" onClick={() => {
+                                refetch()
+                                setDesireProduct(product)}}>Book Now</label>  
                         </div> : <EmptyProductButton></EmptyProductButton>
                     }
 

@@ -36,6 +36,7 @@ const ProductLists = () => {
                         product={product} 
                         key={product.id}
                         setDesireProduct={setDesireProduct}
+                        refetch={refetch}
                     ></ProductPage>)
                 }
             </div>

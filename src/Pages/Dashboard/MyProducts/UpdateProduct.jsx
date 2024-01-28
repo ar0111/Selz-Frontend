@@ -4,8 +4,9 @@ import { useLoaderData } from 'react-router-dom';
 import toast from 'react-hot-toast';
 import { useLocation, useNavigate } from 'react-router-dom';
 
-const UpdateProduct = ({category, id}) => {
+const UpdateProduct = () => {
     const desireProduct = useLoaderData();
+    console.log(desireProduct);
     const location = useLocation();
     const navigate = useNavigate();
 
