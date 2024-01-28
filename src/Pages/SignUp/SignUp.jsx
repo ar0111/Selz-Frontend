@@ -6,7 +6,7 @@ import toast from 'react-hot-toast';
 
 const SignUp = () => {
     const {register, handleSubmit, formState: { errors }} = useForm();
-    const {createUser, updateUser, verifyEmail} = useContext(AuthContext);
+    const {createUser, updateUser, verifyEmail, googleSignIn} = useContext(AuthContext);
     const [signUpError, setSignUpError] = useState('');
     const navigate = useNavigate();
 
@@ -37,6 +37,21 @@ const SignUp = () => {
         })
     }
 
+    const handleGoogleLogIn = ()=>{
+        googleSignIn()
+        .then(result =>{
+            const user = result.user;
+            console.log(user);
+            toast.success('Your Google Registration is Successfully Done!');
+            saveUser(user.displayName, user.email, "buyer", user.emailVerified)
+        })
+        .catch(error=>{
+            console.log(error);
+            setSignUpError(error.message);
+        })
+
+    }
+
     const saveUser = (name, email, role, emailVerified)=>{
         let isAdmin = '';
         if(name.toLowerCase() === 'admin') {
@@ -45,7 +60,7 @@ const SignUp = () => {
         };
         const user = {name, email, role:role, emailVerified, primaryRole:isAdmin};
 
-        fetch('http://localhost:3000/users',{
+        fetch('https://selz-server.vercel.app/users',{
             method: 'POST',
             headers:{
                 'content-type':'application/json'
@@ -112,7 +127,7 @@ const SignUp = () => {
                     <p>Already Have an Account? <Link className='text-secondary' to='/login'>Please Sign In</Link></p>
 
                     <div className='divider'>OR</div>
-                    <button className='btn btn-outline w-full'>CONTINUE WITH GOOGLE</button>
+                    <button onClick={handleGoogleLogIn} className='btn btn-outline w-full'>CONTINUE WITH GOOGLE</button>
                 </form>
             </div>
         </div>

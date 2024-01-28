@@ -19,7 +19,7 @@ const Payment = ({orders, price, refetch}) => {
 
     useEffect(() => {
         // Create PaymentIntent as soon as the page loads
-        fetch("http://localhost:3000/create-payment-intent", {
+        fetch("https://selz-server.vercel.app/create-payment-intent", {
           method: "POST",
           headers: { 
             "Content-Type": "application/json" 
@@ -86,7 +86,7 @@ const Payment = ({orders, price, refetch}) => {
                 orderList: orders
             }
 
-            fetch("http://localhost:3000/payments", {
+            fetch("https://selz-server.vercel.app/payments", {
                 method: "POST",
                 headers: { 
                     "Content-Type": "application/json" 
@@ -102,7 +102,7 @@ const Payment = ({orders, price, refetch}) => {
             };
 
             // orders.map(order =>{
-            //     fetch(`http://localhost:3000/bookings/${order._id}`, {
+            //     fetch(`https://selz-server.vercel.app/bookings/${order._id}`, {
             //     method: "DELETE"
             //     })
             //     .then(res=>res.json())

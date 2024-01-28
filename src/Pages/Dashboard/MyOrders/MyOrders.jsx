@@ -10,9 +10,9 @@ const MyOrders = () => {
     const {user} = useContext(AuthContext);
 
     const { data: orders = [], refetch, isLoading } = useQuery({
-        queryKey: ['bookings', user?.email],
+        queryKey: ['bookings-orders', user?.email],
         queryFn: async()=>{
-            const res = await fetch(`http://localhost:3000/bookings?email=${user?.email}`);
+            const res = await fetch(`https://selz-server.vercel.app/bookings-orders?email=${user?.email}`);
             const data = await res.json();
             // console.log(data);
             // const finalData = JSON.stringify(data);
@@ -28,7 +28,7 @@ const MyOrders = () => {
         const aggree = window.confirm(`Are you want to delete ${order.productName}`);
         if(aggree){
             // console.log("Yes Aggree");
-            fetch(`http://localhost:3000/bookings/${order._id}`, {
+            fetch(`https://selz-server.vercel.app/bookings/${order._id}`, {
                 method: "DELETE"
             })
             .then(res=>res.json())
@@ -40,7 +40,7 @@ const MyOrders = () => {
                 }
             })
 
-            fetch(`http://localhost:3000/bookings/${order.productCategory}/${order.productID}`, {
+            fetch(`https://selz-server.vercel.app/bookings/${order.productCategory}/${order.productID}`, {
                 method: "PUT"
             })
             .then(res=>res.json())
@@ -67,6 +67,7 @@ const MyOrders = () => {
                                     <th>product price</th>
                                     <th>seller name</th>
                                     <th>seller contact</th>
+                                    <th>payment status</th>
                                     <th>remove item</th>
                                 </tr>
                             </thead>
@@ -80,7 +81,16 @@ const MyOrders = () => {
                                         <td>${order.productPrice}</td>
                                         <td>{order.seller}</td>
                                         <td>{order.sellercontact}</td>
+                                        <td>
+                                            {
+                                               !order.paid && <Link to={'/cart'}><button className='btn btn-sm btn-info'>PAY</button></Link>
+                                            }
+                                            {
+                                                order.paid && <span className='text-success'>PAID</span>
+                                            }
+                                        </td>
                                         <td><button onClick={()=> deleteOrder(order)} className='btn btn-sm btn-info text-white'>Delete</button></td>
+                                        
                                     </tr>)
                                 }
                             </tbody>

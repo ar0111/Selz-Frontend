@@ -15,7 +15,7 @@ const SingleBolg = () => {
     const { data: blog = [], refetch, isLoading } = useQuery({
         queryKey: ['blogs', params.id],
         queryFn: async()=>{
-            const res = await fetch(`http://localhost:3000/blogs/${params.id}`);
+            const res = await fetch(`https://selz-server.vercel.app/blogs/${params.id}`);
             const data = await res.json();
             return data;
         }
@@ -30,7 +30,7 @@ const SingleBolg = () => {
     return (
         <div className='container mx-auto my-10'>
             <div className='flex items-center justify-center'>
-                <div className='w-1/2 bg-base-100 shadow-xl'>
+                <div className='w-full md:w-1/2 bg-base-100 shadow-xl'>
                     <figure><img className='w-full' src={imgUrl} alt={imgAlt} /></figure>
                     
                     <div className='p-6 my-10'>
@@ -64,6 +64,20 @@ const SingleBolg = () => {
                         <p className='my-6'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nesciunt nobis quas, eveniet voluptatem ipsam repellat iusto incidunt velit dicta id ad eos veniam autem, asperiores aut praesentium voluptatum reprehenderit corporis quam non consequatur! Aut dolorum, aspernatur voluptatum laudantium iure temporibus incidunt eius quibusdam, amet ipsa impedit ea nihil sapiente doloribus in quidem vel laborum. Distinctio iste porro recusandae ducimus laborum!</p>
 
                         <hr className="border-b-1 border-gray" />
+
+                        <div className='mt-6'>
+                            <ul className='flex gap-4'>
+                                <li className='border border-b-1 border-gray px-4 py-1 hover:bg-amber-500'>
+                                    <a href="#">Agency</a>
+                                </li>
+                                <li className='border border-b-1 border-gray px-4 py-1 hover:bg-amber-500'>
+                                    <a href="#">Business</a>
+                                </li>
+                                <li className='border border-b-1 border-gray px-4 py-1 hover:bg-amber-500'>
+                                    <a href="#">Personal</a>
+                                </li>
+                            </ul>
+                        </div>
 
                     </div>
                 </div>

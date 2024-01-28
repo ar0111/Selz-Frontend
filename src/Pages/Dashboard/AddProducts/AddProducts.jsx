@@ -19,7 +19,7 @@ const AddProducts = () => {
     const { data: categories = [], refetch, isLoading } = useQuery({
         queryKey: ['categoryname'],
         queryFn: async()=>{
-            const res = await fetch("http://localhost:3000/categoryname");
+            const res = await fetch("https://selz-server.vercel.app/categoryname");
             const data = await res.json();
             return data;
         }
@@ -48,7 +48,7 @@ const AddProducts = () => {
         formData.append('quantity', data.quantity);
         // console.log(formData);
 
-        fetch('http://localhost:3000/addproducts',{
+        fetch('https://selz-server.vercel.app/addproducts',{
             method: 'PUT',
             body:formData
         })

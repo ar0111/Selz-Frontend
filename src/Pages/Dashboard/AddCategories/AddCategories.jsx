@@ -13,7 +13,7 @@ const AddCategories = () => {
         formData.append('name', data.name);
         // console.log(formData);
 
-        fetch('http://localhost:3000/addcategories',{
+        fetch('https://selz-server.vercel.app/addcategories',{
             method: 'POST',
             body:formData
         })

@@ -11,7 +11,7 @@ const MyProducts = () => {
     const { data: myproducts = [], refetch, isLoading } = useQuery({
         queryKey: ['myproducts', user?.email],
         queryFn: async()=>{
-            const res = await fetch(`http://localhost:3000/myproducts/${user?.email}`);
+            const res = await fetch(`https://selz-server.vercel.app/myproducts/${user?.email}`);
             const data = await res.json();
             // console.log(data);
             // const finalData = JSON.stringify(data);

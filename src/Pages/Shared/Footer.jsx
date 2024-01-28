@@ -2,17 +2,18 @@ import React from 'react';
 import newletter from '../../assets/images/newsletter.png';
 
 const Footer = () => {
+
     return (
         <>
             <div className='bg-midnight'>
                 <div className='container mx-auto py-16'>
-                    <div className='flex justify-between'>
+                    <div className='flex justify-between flex-col md:flex-row items-center gap-6 md:gap-0'>
                         <div className='flex items-center gap-4'>
                             <img src={newletter} alt="" />
                             <h1 className='text-white text-xl font-bold'>Sign Up For Newsletter</h1>
                         </div>
 
-                        <div>
+                        <div className=''>
                             <div className="join">
                                 <div>
                                     <div>
@@ -31,22 +32,14 @@ const Footer = () => {
                 <div className='border-b-2 border-silver'></div>
 
                 <div className='container mx-auto'>
-                    <footer className="footer py-10 text-white">
-                        <nav>
-                            <header className="footer-title">Contact Us</header> 
-                            <p className="link link-hover">Demo Store</p>
-                            <p className="link link-hover">No. 1259 Freedom, New York, 11111</p>
-                            <p className="link link-hover">United States</p>
-                            <p className="link link-hover">+91-987654321</p>
-                            <a className="link link-hover">demo@exampledemo.com</a>
-                        </nav> 
+                    <footer className="footer py-10 text-white px-14 md:px-0">
                         <nav>
                             <header className="footer-title">Information</header> 
-                            <a className="link link-hover hidden md:block">Privacy Policy</a>
-                            <a className="link link-hover hidden md:block">Refund Policy</a>
-                            <a className="link link-hover hidden md:block">Shipping Policy</a>
-                            <a className="link link-hover hidden md:block">Terms of Services</a>
-                            <a className="link link-hover hidden md:block">Bolgs</a>
+                            <a className="link link-hover">Privacy Policy</a>
+                            <a className="link link-hover">Refund Policy</a>
+                            <a className="link link-hover">Shipping Policy</a>
+                            <a className="link link-hover">Terms of Services</a>
+                            <a className="link link-hover">Bolgs</a>
                         </nav> 
                         <nav>
                             <header className="footer-title">Account</header> 
@@ -68,7 +61,7 @@ const Footer = () => {
                 </div>
 
                 <div className='border-b-2 border-silver'></div>
-                <div className='container mx-auto'>
+                <div className='container mx-auto px-14 md:px-0'>
                     <div className='text-white text-base font-medium py-4'>
                         <p>&copy; {new Date().getFullYear()}; Selz Powered by Developer</p>
                     </div>

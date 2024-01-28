@@ -7,7 +7,7 @@ const Success = () => {
             <div className='flex justify-center items-center'>
                 <div className='text-center'>
                     <h1 className='text-3xl text-cyan-400'>Congratulations! Payment has been done successfully.</h1>
-                    <Link to='/' className='btn btn-info my-6'>Go Home</Link>
+                    <Link to='/' className='btn btn-info my-6 uppercase'>Go Home</Link>
                 </div>
             </div>
         </div>

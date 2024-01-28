@@ -14,7 +14,7 @@ const Cart = () => {
     const { data: orders = [], refetch, isLoading } = useQuery({
         queryKey: ['bookings', user?.email],
         queryFn: async()=>{
-            const res = await fetch(`http://localhost:3000/bookings?email=${user?.email}`);
+            const res = await fetch(`https://selz-server.vercel.app/bookings?email=${user?.email}`);
             const data = await res.json();
             return data;
         }
@@ -27,7 +27,7 @@ const Cart = () => {
         console.log(order);
         const aggree = window.confirm(`Are you want to delete ${order.productName}`);
         if(aggree){
-            fetch(`http://localhost:3000/bookings/${order._id}`, {
+            fetch(`https://selz-server.vercel.app/bookings/${order._id}`, {
                 method: "DELETE"
             })
             .then(res=>res.json())
@@ -39,7 +39,7 @@ const Cart = () => {
                 }
             })
 
-            fetch(`http://localhost:3000/bookings/${order.productCategory}/${order.productID}`, {
+            fetch(`https://selz-server.vercel.app/bookings/${order.productCategory}/${order.productID}`, {
                 method: "PUT"
             })
             .then(res=>res.json())

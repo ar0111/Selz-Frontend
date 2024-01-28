@@ -10,7 +10,7 @@ const ProductCard = ({product, refetch}) => {
         const agree = window.confirm(`Are you want to delete ${name}`);
         if(agree){
             // console.log("Yes Agree");
-            fetch(`http://localhost:3000/myproducts/${category}/${id}`, {
+            fetch(`https://selz-server.vercel.app/myproducts/${category}/${id}`, {
                 method: "DELETE"
             })
             .then(res=>res.json())
