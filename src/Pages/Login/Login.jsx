@@ -22,7 +22,7 @@ const Login = () => {
             console.log(user);
             toast.success('User Login Successfully');
             if(user.emailVerified){
-                fetch(`https://selz-server.vercel.app/users/${data.email}`,{
+                fetch(`http://localhost:3000/users/${data.email}`,{
                     method: 'PUT',
                     headers:{
                         'content-type':'application/json'

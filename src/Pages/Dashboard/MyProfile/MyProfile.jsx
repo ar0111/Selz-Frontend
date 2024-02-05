@@ -13,7 +13,7 @@ const MyProfile = () => {
 
     useEffect(()=>{
         if(user?.email){
-            fetch(`https://selz-server.vercel.app/desieruser/${user?.email}`)
+            fetch(`http://localhost:3000/desieruser/${user?.email}`)
                 .then(res=>res.json())
                 .then(data=>{
                     // console.log(data);

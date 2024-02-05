@@ -7,14 +7,14 @@ const AllUsers = () => {
     const {data: users = [], refetch} = useQuery({
         queryKey: ['users'],
         queryFn: async () =>{
-            const res = await fetch('https://selz-server.vercel.app/users');
+            const res = await fetch('http://localhost:3000/users');
             const data = await res.json();
             return data
         }
     })
 
     const handleMakeAdmin = (id) =>{
-        fetch(`https://selz-server.vercel.app/users/admin/${id}`,{
+        fetch(`http://localhost:3000/users/admin/${id}`,{
             method: "PUT"
         })
         .then(res=>res.json())
@@ -32,7 +32,7 @@ const AllUsers = () => {
         const aggree = window.confirm(`Are you want to delete ${user.name}`);
         if(aggree){
             // console.log("Yes Aggree");
-            fetch(`https://selz-server.vercel.app/users/admin/${user._id}`, {
+            fetch(`http://localhost:3000/users/admin/${user._id}`, {
                 method: "DELETE"
             })
             .then(res=>res.json())

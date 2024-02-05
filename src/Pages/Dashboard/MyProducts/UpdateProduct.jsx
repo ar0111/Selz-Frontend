@@ -22,7 +22,7 @@ const UpdateProduct = () => {
             price: data.price
         }
 
-        fetch(`https://selz-server.vercel.app/update/${desireProduct[0].category}/${desireProduct[0].id}`, {
+        fetch(`http://localhost:3000/update/${desireProduct[0].category}/${desireProduct[0].id}`, {
             method: 'PUT',
             headers:{
                 'content-type': 'application/json'

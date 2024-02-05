@@ -9,7 +9,7 @@ const Blogs = () => {
     const { data: blogs = [], refetch, isLoading } = useQuery({
         queryKey: ['blogs'],
         queryFn: async()=>{
-            const res = await fetch('https://selz-server.vercel.app/blogs');
+            const res = await fetch('http://localhost:3000/blogs');
             const data = await res.json();
             return data;
         }
@@ -21,8 +21,9 @@ const Blogs = () => {
         <div className='container mx-auto my-10'>
             <div className='grid grid-cols-1 md:grid-cols-3 gap-6'>
                 {
-                    blogs.map(data => <BlogCard 
+                    blogs.map((data, i) => <BlogCard 
                         data={data} key={data._id}
+                        i={i}
                     ></BlogCard>)
                 }
             </div>

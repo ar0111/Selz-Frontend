@@ -8,7 +8,7 @@ const ordersSummary = (email) => {
 
     useEffect(()=>{
         const fetchData = async () => {
-            const result = await fetch(`https://selz-server.vercel.app/bookings?email=${email}`);
+            const result = await fetch(`http://localhost:3000/bookings?email=${email}`);
             const data = await result.json();
             setOrders(data);
         }
@@ -22,7 +22,7 @@ const ordersSummary = (email) => {
     // const { data: productList = [], refetch, isLoading } = useQuery({
     //     queryKey: ['bookings', email],
     //     queryFn: async()=>{
-    //         const res = await fetch(`https://selz-server.vercel.app/bookings?email=${email}`);
+    //         const res = await fetch(`http://localhost:3000/bookings?email=${email}`);
     //         const data = await res.json();
     //         return data;
     //     }

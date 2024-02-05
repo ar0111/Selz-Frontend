@@ -10,12 +10,12 @@ const ProductLists = () => {
     const params = useParams();
     // console.log(params);
     const [desireProduct, setDesireProduct] = useState(null);
-    // console.log('desigre Product', desireProduct);
+    console.log('desigre Product', desireProduct);
 
     const { data: productList = [], refetch, isLoading } = useQuery({
         queryKey: ['products', params.id],
         queryFn: async()=>{
-            const res = await fetch(`https://selz-server.vercel.app/products/${params.id}`);
+            const res = await fetch(`http://localhost:3000/products/${params.id}`);
             const data = await res.json();
             return data;
         }
@@ -48,7 +48,6 @@ const ProductLists = () => {
                     refetch={refetch}
                 ></BookingModal>
             }
-            
             
         </div>
     );

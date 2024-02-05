@@ -26,6 +26,8 @@ import Success from "../../Pages/Success/Success";
 import ContactUs from "../../Pages/ContactUs/ContactUs";
 import Blogs from "../../Pages/Blogs/Blogs";
 import SingleBolg from "../../Pages/Blogs/SingleBolg";
+import Favourite from "../../Pages/Favourite/Favourite";
+import Compare from "../../Pages/Compare/Compare";
 
 const router = createBrowserRouter([
     {
@@ -39,6 +41,14 @@ const router = createBrowserRouter([
             {
                 path:'/products/:id',
                 element:<PrivateRoute><ProductLists></ProductLists></PrivateRoute>
+            },
+            {
+                path:'/compare',
+                element:<PrivateRoute><Compare></Compare></PrivateRoute>,
+            },
+            {
+                path:'/favourite',
+                element:<PrivateRoute><Favourite></Favourite></PrivateRoute>,
             },
             {
                 path:'/cart',
@@ -121,7 +131,7 @@ const router = createBrowserRouter([
             {
                 path:'/dashboard/update/:category/:id',
                 element:<AdminSellerRoute><UpdateProduct></UpdateProduct></AdminSellerRoute>,
-                loader:({params}) => fetch(`https://selz-server.vercel.app/dashboard/update/${params.category}/${params.id}`)
+                loader:({params}) => fetch(`http://localhost:3000/dashboard/update/${params.category}/${params.id}`)
             },
             {
                 path:'/dashboard/my-orders', 

@@ -12,7 +12,7 @@ const MyOrders = () => {
     const { data: orders = [], refetch, isLoading } = useQuery({
         queryKey: ['bookings-orders', user?.email],
         queryFn: async()=>{
-            const res = await fetch(`https://selz-server.vercel.app/bookings-orders?email=${user?.email}`);
+            const res = await fetch(`http://localhost:3000/bookings-orders?email=${user?.email}`);
             const data = await res.json();
             // console.log(data);
             // const finalData = JSON.stringify(data);
@@ -28,7 +28,7 @@ const MyOrders = () => {
         const aggree = window.confirm(`Are you want to delete ${order.productName}`);
         if(aggree){
             // console.log("Yes Aggree");
-            fetch(`https://selz-server.vercel.app/bookings/${order._id}`, {
+            fetch(`http://localhost:3000/bookings/${order._id}`, {
                 method: "DELETE"
             })
             .then(res=>res.json())
@@ -40,7 +40,7 @@ const MyOrders = () => {
                 }
             })
 
-            fetch(`https://selz-server.vercel.app/bookings/${order.productCategory}/${order.productID}`, {
+            fetch(`http://localhost:3000/bookings/${order.productCategory}/${order.productID}`, {
                 method: "PUT"
             })
             .then(res=>res.json())

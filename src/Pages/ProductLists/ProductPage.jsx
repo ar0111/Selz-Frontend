@@ -1,25 +1,101 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import EmptyProductButton from './EmptyProductButton';
-import { Checkmark } from 'react-checkmark'
+import { Checkmark } from 'react-checkmark';
+import { FaArrowsRotate } from "react-icons/fa6";
+import toast from 'react-hot-toast';
+import { FaHeart } from "react-icons/fa";
+import { AuthContext } from '../../Context/AuthProvider';
 
 const ProductPage = ({product, setDesireProduct, refetch}) => {
-    const {name, price, condition, seller, email, phone, location, description, year, image, quantity} = product;
+    const {user} = useContext(AuthContext);
+    const {name, price, condition, seller, email, phone, location, description, year, image, quantity, category, id} = product;
+    // console.log(product);
     const [data, setData] = useState({})
+    
+    // console.log("Compare Product", compareProduct);
     // console.log(product);
     // console.log('selected product', product);
 
     useEffect(()=>{
         if(email){
-            fetch(`https://selz-server.vercel.app/users/${email}`)
+            fetch(`http://localhost:3000/users/${email}`)
                 .then(res=>res.json())
                 .then(data=>{
-                    console.log(data);
+                    // console.log(data);
                     setData(data);
                 })
         }
     },[email])
 
-    console.log(data.emailVerified);
+    const handleCompare = (event)=>{
+        event.preventDefault();
+
+        const desireProduct = {
+            name, 
+            price,
+            condition,
+            description,
+            year,
+            image,
+            category,
+            id,
+            email:user.email
+        }
+
+        fetch('http://localhost:3000/compare',{
+            method:"POST",
+            headers:{
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(desireProduct)
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            console.log(data);
+            if(data.acknowledged){
+                toast.success("Product Added to Compare Successfully!");
+                refetch();
+            } else{
+                toast.error(data.message);
+            }
+        })
+    }
+
+    const handleFavourite = (event)=>{
+        event.preventDefault();
+
+        const desireProduct = {
+            name, 
+            price,
+            condition,
+            description,
+            year,
+            image,
+            category,
+            id,
+            email:user.email
+        }
+
+        fetch('http://localhost:3000/favourite',{
+            method:"POST",
+            headers:{
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(desireProduct)
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            console.log(data);
+            if(data.acknowledged){
+                toast.success("Product Added Favourite List Successfully!");
+                refetch();
+            } else{
+                toast.error(data.message);
+            }
+        })
+    }
+
+    // console.log(data.emailVerified);
 
     return (
         <div>
@@ -70,15 +146,18 @@ const ProductPage = ({product, setDesireProduct, refetch}) => {
                             </tbody>
                         </table>
                     </div>
-
-                    {
-                        quantity !== '0' || quantity == 'NaN'?  <div className="card-actions justify-center">
-                            <label htmlFor='booking-modal' className="btn btn-info uppercase" onClick={() => {
-                                refetch()
-                                setDesireProduct(product)}}>Book Now</label>  
-                        </div> : <EmptyProductButton></EmptyProductButton>
-                    }
-
+                    
+                    <div className='flex justify-center items-center gap-6'>
+                        <div><button onClick={handleCompare}><FaArrowsRotate size={30} style={{ marginTop: '8', color: "#475569",}}/></button></div>
+                        {
+                            quantity !== '0' || quantity == 'NaN'?  <div className="card-actions">
+                                <label htmlFor='booking-modal' className="btn btn-info uppercase" onClick={() => {
+                                    refetch()
+                                    setDesireProduct(product)}}>Book Now</label>  
+                            </div> : <EmptyProductButton></EmptyProductButton>
+                        }
+                        <div><button onClick={handleFavourite}><FaHeart size={30} style={{ marginTop: '8', color: "#475569",}}/></button></div>
+                    </div>
                     
 
                     {/* <div className="card-actions justify-center">

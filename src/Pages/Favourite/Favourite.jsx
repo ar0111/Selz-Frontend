@@ -1,17 +1,16 @@
 import React, { useContext } from 'react';
-import { AuthContext } from '../../../Context/AuthProvider';
-import { useQuery } from '@tanstack/react-query'
-import ProductCard from './ProductCard';
-import Loading from '../../../Components/Loading';
+import { AuthContext } from '../../Context/AuthProvider';
+import { useQuery } from '@tanstack/react-query';
+import FavouriteCard from './FavouriteCard';
 
-const MyProducts = () => {
+const Favourite = () => {
+
     const {user} = useContext(AuthContext);
-    // console.log(user);
 
     const { data: myproducts = [], refetch, isLoading } = useQuery({
-        queryKey: ['myproducts', user?.email],
+        queryKey: ['myfavourite', user?.email],
         queryFn: async()=>{
-            const res = await fetch(`http://localhost:3000/myproducts/${user?.email}`);
+            const res = await fetch(`http://localhost:3000/myfavourite/${user?.email}`);
             const data = await res.json();
             // console.log(data);
             // const finalData = JSON.stringify(data);
@@ -19,7 +18,9 @@ const MyProducts = () => {
         }
     })
 
-    if(isLoading) return <Loading></Loading>
+    console.log(myproducts);
+
+    // if(isLoading) return <Loading></Loading>
 
     return (
         <div className='container mx-auto my-10'>
@@ -28,11 +29,11 @@ const MyProducts = () => {
                     myproducts.map((product, idx) => <ProductCard product={product} key={idx}></ProductCard>)
                 } */}
                 {
-                    myproducts.map((product,idx) => <ProductCard 
+                    myproducts.map((product,idx) => <FavouriteCard 
                         product = {product}
                         key = {idx}
                         refetch = {refetch}
-                    ></ProductCard>)
+                    ></FavouriteCard>)
                 }
             </div>
             
@@ -40,4 +41,4 @@ const MyProducts = () => {
     );
 };
 
-export default MyProducts;
+export default Favourite;

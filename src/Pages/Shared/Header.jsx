@@ -25,7 +25,7 @@ const Header = () => {
     const { data: orders = [], refetch, isLoading } = useQuery({
         queryKey: ['bookings', user?.email],
         queryFn: async()=>{
-            const res = await fetch(`https://selz-server.vercel.app/bookings?email=${user?.email}`);
+            const res = await fetch(`http://localhost:3000/bookings?email=${user?.email}`);
             const data = await res.json();
             return data;
         }
@@ -47,7 +47,7 @@ const Header = () => {
 
     let {pathname} = useLocation();
     let subpage = pathname.split('/')?.[1];
-    console.log(subpage);
+    // console.log(subpage);
 
     function Linkness (type = null){
         if(subpage === ''){
@@ -89,11 +89,11 @@ const Header = () => {
                         <div className='grid grid-cols-4'>
                             <div className='flex justify-start gap-2'>
                                 <img className='w-7 md:w-8' src={compare} alt="" />
-                                <p className='text-white hidden md:block'>Compare <br/>Product</p>
+                                <Link to='/compare'><p className='text-white hidden md:block'>Compare <br/>Product</p></Link>
                             </div>
                             <div className='flex justify-start gap-2'>
                                 <img className='w-7 md:w-8' src={favorite} alt="" />
-                                <p className='text-white hidden md:block'>Favourite <br/>Wishlist</p>
+                                <Link to='/favourite'><p className='text-white hidden md:block'>Favourite <br/>Wishlist</p></Link>
                             </div>
                             <div className='flex justify-start gap-2'>
                                 <img className='w-7 md:w-8' src={account} alt="" />

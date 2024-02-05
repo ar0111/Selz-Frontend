@@ -7,7 +7,7 @@ const Categories = () => {
     const { data: categories = [], refetch, isLoading } = useQuery({
         queryKey: ['addcategories'],
         queryFn: async()=>{
-            const res = await fetch("https://selz-server.vercel.app/addcategories");
+            const res = await fetch("http://localhost:3000/addcategories");
             const data = await res.json();
             return data;
         }

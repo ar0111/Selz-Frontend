@@ -35,7 +35,7 @@ const BookingModal = ({desireProduct, setDesireProduct, refetch}) => {
             productCategory: category
         }
 
-        fetch('https://selz-server.vercel.app/bookings',{
+        fetch('http://localhost:3000/bookings',{
             method:"POST",
             headers:{
                 'content-type': 'application/json'
@@ -56,7 +56,7 @@ const BookingModal = ({desireProduct, setDesireProduct, refetch}) => {
             quantity
         }
 
-        fetch(`https://selz-server.vercel.app/updateproduct/${category}/${id}`, {
+        fetch(`http://localhost:3000/updateproduct/${category}/${id}`, {
         method: 'PUT',
         headers:{
             'content-type': 'application/json'
