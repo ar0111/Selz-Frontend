@@ -24,6 +24,7 @@ const Compare = () => {
 
     return (
         <>
+            <h1 className='container mx-auto my-10 text-3xl uppercase font-semibold'>Products for Compare</h1>
             {
                 myproducts.length > 0 ?<div className='container mx-auto my-10'>
                     <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1 px-6 md:px-0'>

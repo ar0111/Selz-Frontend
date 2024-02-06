@@ -24,6 +24,7 @@ const Favourite = () => {
 
     return (
         <div className='container mx-auto my-10'>
+            <h1 className='text-3xl uppercase font-semibold mb-10'>Favourite Products</h1>
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-1 px-6 md:px-0'>
                 {/* {
                     myproducts.map((product, idx) => <ProductCard product={product} key={idx}></ProductCard>)
