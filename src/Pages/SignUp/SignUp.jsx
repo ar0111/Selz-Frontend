@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { AuthContext } from '../../Context/AuthProvider';
 import { useForm } from "react-hook-form";
 import toast from 'react-hot-toast';
@@ -43,13 +43,37 @@ const SignUp = () => {
             const user = result.user;
             console.log(user);
             toast.success('Your Google Registration is Successfully Done!');
-            saveUser(user.displayName, user.email, "buyer", user.emailVerified)
+            saveGoogleUser(user.displayName, user.email, "buyer", user.emailVerified)
+
+            navigate('/');
         })
         .catch(error=>{
             console.log(error);
             setSignUpError(error.message);
         })
 
+    }
+
+    const saveGoogleUser = (name, email, role, emailVerified)=>{
+        let isAdmin = '';
+        if(name.toLowerCase() === 'admin') {
+            role = 'admin',
+            isAdmin = 'admin'
+        };
+        const user = {name, email, role:role, emailVerified, primaryRole:isAdmin};
+
+        fetch('https://selz-server.vercel.app/users',{
+            method: 'POST',
+            headers:{
+                'content-type':'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+        .then(res=>res.json())
+        .then(data=>{
+            console.log(data);
+            navigate('/');
+        })
     }
 
     const saveUser = (name, email, role, emailVerified)=>{

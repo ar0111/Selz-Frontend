@@ -43,7 +43,7 @@ const Login = () => {
         })
     }
 
-    const handleForgetPassword = (data, event)=>{
+    const handleForgetPassword = ()=>{
         if(!userEmail){
             toast.error("Please Enter Your Email Address");
             return;
@@ -91,9 +91,6 @@ const Login = () => {
                         </div>
                         
                     </div>
-
-                    <div className='divider'>OR</div>
-                    <button className='btn btn-outline w-full'>CONTINUE WITH GOOGLE</button>
                 </form>
 
                 <label className="label justify-center pt-0 pb-6">
