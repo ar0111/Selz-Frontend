@@ -15,7 +15,7 @@ const SingleBolg = () => {
     const { data: blog = [], refetch, isLoading } = useQuery({
         queryKey: ['blogs', params.id],
         queryFn: async()=>{
-            const res = await fetch(`http://localhost:3000/blogs/${params.id}`);
+            const res = await fetch(`https://selz-server.vercel.app/blogs/${params.id}`);
             const data = await res.json();
             return data;
         }

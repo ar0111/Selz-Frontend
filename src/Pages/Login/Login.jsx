@@ -6,15 +6,16 @@ import toast from 'react-hot-toast';
 
 const Login = () => {
     const {register, handleSubmit, formState: { errors }} = useForm();
-    const {signIn, user} = useContext(AuthContext);
+    const {signIn, user, forgetPassword} = useContext(AuthContext);
     const [loginError, setLoginError] = useState('');
+    const [userEmail, setUserEmail] = useState('');
     const location = useLocation();
     const navigate = useNavigate();
 
     const from = location.state?.from?.pathname || '/';
 
     const handleLogin = (data)=>{
-        // console.log(data);
+        setUserEmail(data.email);
         setLoginError('');
         signIn(data.email, data.password)
         .then(result=>{
@@ -22,7 +23,7 @@ const Login = () => {
             console.log(user);
             toast.success('User Login Successfully');
             if(user.emailVerified){
-                fetch(`http://localhost:3000/users/${data.email}`,{
+                fetch(`https://selz-server.vercel.app/users/${data.email}`,{
                     method: 'PUT',
                     headers:{
                         'content-type':'application/json'
@@ -42,6 +43,18 @@ const Login = () => {
         })
     }
 
+    const handleForgetPassword = (data, event)=>{
+        if(!userEmail){
+            toast.error("Please Enter Your Email Address");
+            return;
+        }
+
+        forgetPassword(userEmail)
+        .then(()=>{
+            toast.success("Please Check Your email and reset Your Password.")
+        })
+    }
+
     return (
         <div className='h-[800px] flex justify-center items-center'>
             
@@ -53,7 +66,9 @@ const Login = () => {
                         <label className="label">
                             <span className="label-text">Email</span>
                         </label>
-                        <input {...register("email")} type="email" placeholder="Email" className="input input-bordered" required />
+                        <input {...register("email")}
+                            onBlur = {(e) => setUserEmail(e.target.value)}
+                            type="email" placeholder="Email" className="input input-bordered" required />
                         {errors.email && <p className='text-red'>{errors.email.message}</p>}
                     </div>
 
@@ -63,10 +78,6 @@ const Login = () => {
                         </label>
                         <input {...register("password")} type="password" placeholder="Password" className="input input-bordered" required />
                         {errors.password && <p className='text-red'>{errors.password.message}</p>}
-
-                        <label className="label">
-                            <a href="#" className="label-text-alt link link-hover text-sm font-semibold">Forgot password?</a>
-                        </label>
 
                         {
                             loginError && <p className='text-red'>{loginError}</p>
@@ -84,6 +95,10 @@ const Login = () => {
                     <div className='divider'>OR</div>
                     <button className='btn btn-outline w-full'>CONTINUE WITH GOOGLE</button>
                 </form>
+
+                <label className="label justify-center pt-0 pb-6">
+                    <button onClick={handleForgetPassword} className="label-text-alt link link-hover text-lg font-semibold">Forgot password?</button>
+                </label>
             </div>
         </div>
     );

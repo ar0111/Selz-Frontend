@@ -131,7 +131,7 @@ const router = createBrowserRouter([
             {
                 path:'/dashboard/update/:category/:id',
                 element:<AdminSellerRoute><UpdateProduct></UpdateProduct></AdminSellerRoute>,
-                loader:({params}) => fetch(`http://localhost:3000/dashboard/update/${params.category}/${params.id}`)
+                loader:({params}) => fetch(`https://selz-server.vercel.app/dashboard/update/${params.category}/${params.id}`)
             },
             {
                 path:'/dashboard/my-orders', 

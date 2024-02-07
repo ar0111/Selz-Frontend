@@ -8,7 +8,7 @@ const CompareCard = ({product, refetch}) => {
         const agree = window.confirm(`Are you want to delete ${name}`);
         if(agree){
             // console.log("Yes Agree");
-            fetch(`http://localhost:3000/compareproducts/${product._id}`, {
+            fetch(`https://selz-server.vercel.app/compareproducts/${product._id}`, {
                 method: "DELETE"
             })
             .then(res=>res.json())

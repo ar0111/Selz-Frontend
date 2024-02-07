@@ -25,7 +25,7 @@ const Header = () => {
     const { data: orders = [], refetch, isLoading } = useQuery({
         queryKey: ['bookings', user?.email],
         queryFn: async()=>{
-            const res = await fetch(`http://localhost:3000/bookings?email=${user?.email}`);
+            const res = await fetch(`https://selz-server.vercel.app/bookings?email=${user?.email}`);
             const data = await res.json();
             return data;
         }

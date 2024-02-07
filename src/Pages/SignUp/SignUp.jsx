@@ -60,7 +60,7 @@ const SignUp = () => {
         };
         const user = {name, email, role:role, emailVerified, primaryRole:isAdmin};
 
-        fetch('http://localhost:3000/users',{
+        fetch('https://selz-server.vercel.app/users',{
             method: 'POST',
             headers:{
                 'content-type':'application/json'

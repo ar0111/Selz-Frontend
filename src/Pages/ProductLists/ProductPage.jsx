@@ -18,7 +18,7 @@ const ProductPage = ({product, setDesireProduct, refetch}) => {
 
     useEffect(()=>{
         if(email){
-            fetch(`http://localhost:3000/users/${email}`)
+            fetch(`https://selz-server.vercel.app/users/${email}`)
                 .then(res=>res.json())
                 .then(data=>{
                     // console.log(data);
@@ -42,7 +42,7 @@ const ProductPage = ({product, setDesireProduct, refetch}) => {
             email:user.email
         }
 
-        fetch('http://localhost:3000/compare',{
+        fetch('https://selz-server.vercel.app/compare',{
             method:"POST",
             headers:{
                 'content-type': 'application/json'
@@ -76,7 +76,7 @@ const ProductPage = ({product, setDesireProduct, refetch}) => {
             email:user.email
         }
 
-        fetch('http://localhost:3000/favourite',{
+        fetch('https://selz-server.vercel.app/favourite',{
             method:"POST",
             headers:{
                 'content-type': 'application/json'
